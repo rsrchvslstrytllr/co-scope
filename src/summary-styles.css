@@ -1,0 +1,58 @@
+/* ADD THESE STYLES TO YOUR index.css */
+
+/* Summary Section on Conclusion Page */
+.summary-section {
+  margin: 32px 0;
+}
+
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.summary-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.copy-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 8px 16px;
+  background: var(--black);
+  color: var(--white);
+  border: 1.5px solid var(--black);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.copy-btn:hover {
+  background: #333;
+}
+
+.copy-btn.copied {
+  background: var(--white);
+  color: var(--black);
+}
+
+.summary-textarea {
+  width: 100%;
+  height: 1200px;
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  border: 1.5px solid var(--black);
+  background: var(--gray-light);
+  color: var(--black);
+  resize: vertical;
+  white-space: pre-wrap;
+}
+
+.summary-textarea:focus {
+  outline: none;
+  background: var(--white);
+}
