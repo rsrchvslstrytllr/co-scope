@@ -12,7 +12,7 @@ function IntroPage({ onNext }) {
           foundation for our projects. It helps us hone in our research questions, avoid common 
           pitfalls, and align our work with proven best practices from the start. Whether you're 
           a beginner tackling your first research project or an experienced researcher looking to 
-          stre amline your process, this tool can help ground your research from the beginning.
+          streamline your process, this tool can help ground your research from the beginning.
         </p>
 
         <h2 style={{ fontSize: '16px', fontWeight: 600, marginTop: '32px', marginBottom: '12px' }}>
