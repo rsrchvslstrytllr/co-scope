@@ -13,26 +13,58 @@ import Step8 from './components/steps/Step8'
 import Conclusion from './components/Conclusion'
 
 const INITIAL_FORM_DATA = {
+  problemAndImportance: '',
   researchQuestion: '',
-  whyImportant: '',
   priorWork: '',
-  isPublishable: '',
-  publishableExplanation: '',
+  sharingPlan: '',
   simplestExperiment: '',
   baselines: '',
   resources: [{ type: '', name: '', source: '' }],
-  additionalDetails: ''
+  nonGoals: '',
+  scopeV1: '',
+  priorities: '',
+  knownLimitations: ''
 }
 
 function App() {
   const [currentStep, setCurrentStep] = useState('home')
+  const [showSaved, setShowSaved] = useState(false)
   const [formData, setFormData] = useState(() => {
     const saved = localStorage.getItem('co-scope-data')
-    return saved ? JSON.parse(saved) : INITIAL_FORM_DATA
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved)
+        // Migrate old data structure to new one
+        if (parsed.whyImportant && !parsed.problemAndImportance) {
+          parsed.problemAndImportance = parsed.whyImportant
+          delete parsed.whyImportant
+        }
+        if (parsed.publishableExplanation && !parsed.sharingPlan) {
+          parsed.sharingPlan = parsed.publishableExplanation
+          delete parsed.publishableExplanation
+        }
+        if (parsed.isPublishable) {
+          delete parsed.isPublishable
+        }
+        if (parsed.additionalDetails && !parsed.nonGoals) {
+          // Move old additionalDetails to scopeV1 as a reasonable default
+          parsed.scopeV1 = parsed.additionalDetails
+          delete parsed.additionalDetails
+        }
+        return { ...INITIAL_FORM_DATA, ...parsed }
+      } catch (e) {
+        console.error('Error parsing saved data:', e)
+        return INITIAL_FORM_DATA
+      }
+    }
+    return INITIAL_FORM_DATA
   })
 
   useEffect(() => {
     localStorage.setItem('co-scope-data', JSON.stringify(formData))
+    setShowSaved(true)
+    const timer = setTimeout(() => setShowSaved(false), 2000)
+    return () => clearTimeout(timer)
   }, [formData])
 
   const updateFormData = (field, value) => {
@@ -41,14 +73,14 @@ function App() {
 
   const completedSteps = () => {
     const completed = []
-    if (formData.researchQuestion.trim()) completed.push(1)
-    if (formData.whyImportant.trim()) completed.push(2)
+    if (formData.problemAndImportance.trim()) completed.push(1)
+    if (formData.researchQuestion.trim()) completed.push(2)
     if (formData.priorWork.trim()) completed.push(3)
-    if (formData.isPublishable) completed.push(4)
+    if (formData.sharingPlan.trim()) completed.push(4)
     if (formData.simplestExperiment.trim()) completed.push(5)
     if (formData.baselines.trim()) completed.push(6)
     if (formData.resources.some(r => r.name.trim())) completed.push(7)
-    if (formData.additionalDetails.trim()) completed.push(8)
+    if (formData.nonGoals.trim() || formData.scopeV1.trim() || formData.priorities.trim() || formData.knownLimitations.trim()) completed.push(8)
     return completed
   }
 
@@ -99,6 +131,23 @@ function App() {
         completedSteps={completedSteps()}
       />
       <main className="main-content">
+        {showSaved && (
+          <div style={{
+            position: 'fixed',
+            top: '24px',
+            right: '24px',
+            padding: '8px 16px',
+            background: 'var(--white)',
+            border: '1.5px solid var(--black)',
+            fontSize: '13px',
+            fontWeight: '500',
+            opacity: showSaved ? 1 : 0,
+            transition: 'opacity 0.3s ease',
+            zIndex: 1000
+          }}>
+            ✓ Saved
+          </div>
+        )}
         {renderStep()}
       </main>
     </div>

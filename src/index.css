@@ -41,6 +41,10 @@ html, body {
   display: flex;
   flex-direction: column;
   background: var(--white);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .sidebar-logo {
@@ -243,6 +247,18 @@ textarea {
   background: var(--white);
 }
 
+textarea.textarea-small {
+  min-height: 100px;
+}
+
+textarea.textarea-medium {
+  min-height: 150px;
+}
+
+textarea.textarea-large {
+  min-height: 200px;
+}
+
 textarea:focus {
   outline: none;
   background: var(--gray-light);
@@ -394,6 +410,35 @@ select:focus {
   color: #333;
 }
 
+.download-section {
+  margin-top: 48px;
+  padding: 24px;
+  background: var(--gray-light);
+  border: 1.5px solid var(--black);
+}
+
+.download-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.download-btn {
+  padding: 16px 32px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  border: 1.5px solid var(--black);
+  background: var(--black);
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.download-btn:hover {
+  background: #333;
+}
+
 .next-steps {
   margin-top: 48px;
 }
@@ -440,62 +485,4 @@ select:focus {
   line-height: 1.7;
   margin-bottom: 16px;
   color: #333;
-}
-
-/* Summary Section (Conclusion Page) */
-.summary-section {
-  margin: 32px 0;
-}
-
-.summary-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.summary-title {
-  font-size: 14px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.copy-btn {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  padding: 8px 16px;
-  background: var(--black);
-  color: var(--white);
-  border: 1.5px solid var(--black);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.copy-btn:hover {
-  background: #333;
-}
-
-.copy-btn.copied {
-  background: var(--white);
-  color: var(--black);
-}
-
-.summary-textarea {
-  width: 100%;
-  min-height: 800px;
-  padding: 20px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.6;
-  border: 1.5px solid var(--black);
-  border-top: 1.5px solid var(--black);
-  background: var(--gray-light);
-  color: var(--black);
-  resize: vertical;
-  white-space: pre-wrap;
-}
-
-.summary-textarea:focus {
-  outline: none;
-  background: var(--white);
 }

@@ -3,34 +3,38 @@ function Step1({ formData, updateFormData, onNext }) {
     <div className="step-container">
       <div className="step-header">
         <div className="step-number">Section 1</div>
-        <h2 className="step-title">Define Your Research Question</h2>
+        <h2 className="step-title">Define the Problem & Why It Matters</h2>
       </div>
 
       <p className="step-description">
-        A well-defined research question is the compass for your project. It keeps you on track, 
-        helps you prioritize experiments, and makes it easier to communicate your work to others. 
-        Start by clearly articulating the core question your research aims to answer. This will 
-        guide your experiments, help you stay focused, and ensure your work addresses a meaningful 
-        gap in the field. Think about what problem you're solving and why it matters.
+        Strong research starts with a clear understanding of what problem you're tackling and why 
+        it matters. Before jumping into specific research questions, take time to articulate what's 
+        broken, missing, or could be improved. Think about who's affected by this problem and what 
+        impact solving it could have. This foundation will guide your research question, help you 
+        stay motivated, and make it easier to communicate your work's value to others.
       </p>
 
       <div className="step-tips">
         <div className="step-tips-title">Tips</div>
         <ul>
-          <li>Be specific: Avoid vague questions like "How do neural networks work?" Instead, focus on a particular aspect (e.g., "How does batch size affect training stability in transformers?").</li>
-          <li>Choose a question that you care about. Bringing passion to your project greatly increases your chances of completing it.</li>
+          <li>Describe the problem, not your solution: Focus on what's wrong or missing, not how you'll fix it (that comes later).</li>
+          <li>Be specific: Instead of "AI models have limitations," try "Sentiment analysis models misclassify informal text from social media."</li>
+          <li>Identify stakeholders: Who experiences this problem? Researchers? Practitioners? Specific communities? End users?</li>
+          <li>Connect to impact: What happens if this problem goes unsolved? What becomes possible if it's addressed?</li>
+          <li>Highlight gaps: What have others tried? Where do current approaches fall short?</li>
         </ul>
       </div>
 
       <div className="input-group">
-        <label className="input-label">What is the question we want to answer?</label>
+        <label className="input-label">What problem are you addressing and why does it matter?</label>
         <textarea
-          value={formData.researchQuestion}
-          onChange={(e) => updateFormData('researchQuestion', e.target.value)}
-          placeholder="Enter your research question..."
+          className="textarea-large"
+          value={formData.problemAndImportance}
+          onChange={(e) => updateFormData('problemAndImportance', e.target.value)}
+          placeholder="Describe the problem and its importance..."
         />
         <p className="example-text">
-          Example: "Can pre-trained language models effectively generalize to low-resource languages without fine-tuning?"
+          Example: "Many state-of-the-art NLP models perform poorly on low-resource languages, limiting AI access for billions of speakers worldwide. While multilingual models exist, they're primarily optimized for high-resource languages like English and Chinese. This creates a significant performance gap affecting underserved communities' ability to benefit from advances in machine translation, information retrieval, and conversational AI. Solving this would democratize AI access and advance our theoretical understanding of cross-lingual transfer learning."
         </p>
       </div>
 

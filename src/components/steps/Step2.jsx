@@ -3,35 +3,37 @@ function Step2({ formData, updateFormData, onNext, onPrev }) {
     <div className="step-container">
       <div className="step-header">
         <div className="step-number">Section 2</div>
-        <h2 className="step-title">Why Is This Question Important?</h2>
+        <h2 className="step-title">Define Your Research Question</h2>
       </div>
 
       <p className="step-description">
-        Now that you've defined your research question, it's time to articulate why it matters. 
-        Connect your work to the broader field, real-world applications, or theoretical advancements. 
-        This helps justify your research and increases its chances to have a meaningful impact. 
-        Clearly explaining the importance of your question is critical for securing resources, 
-        collaborating with others, and publishing your work. It also keeps you motivated throughout the project.
+        Now that you understand the problem you're addressing, it's time to formulate a specific, 
+        actionable research question. A well-defined research question is the compass for your project. 
+        It keeps you on track, helps you prioritize experiments, and makes it easier to communicate 
+        your work to others. Your question should be focused enough to be answerable but broad enough 
+        to be interesting.
       </p>
 
       <div className="step-tips">
         <div className="step-tips-title">Tips</div>
         <ul>
-          <li>Link to existing literature: Mention how your work builds on or challenges previous studies.</li>
-          <li>Highlight practical applications: Explain how your research could solve real-world problems.</li>
-          <li>Address limitations: Discuss gaps in current knowledge that your work aims to fill.</li>
+          <li>Be specific: Avoid vague questions like "How do neural networks work?" Instead, focus on a particular aspect (e.g., "How does batch size affect training stability in transformers?").</li>
+          <li>Make it testable: Ensure your question can be answered through experiments or analysis.</li>
+          <li>Connect to your problem: Your question should directly address the problem you defined in Step 1.</li>
+          <li>Choose a question you care about: Passion for your project greatly increases your chances of completing it.</li>
         </ul>
       </div>
 
       <div className="input-group">
-        <label className="input-label">Why is this question important?</label>
+        <label className="input-label">What is the research question you want to answer?</label>
         <textarea
-          value={formData.whyImportant}
-          onChange={(e) => updateFormData('whyImportant', e.target.value)}
-          placeholder="Explain the importance of your research question..."
+          className="textarea-small"
+          value={formData.researchQuestion}
+          onChange={(e) => updateFormData('researchQuestion', e.target.value)}
+          placeholder="Enter your research question..."
         />
         <p className="example-text">
-          Example: "Understanding how language models perform on low-resource languages can democratize access to AI tools in underserved communities and advance multilingual NLP research."
+          Example: "Can pre-trained multilingual models effectively perform zero-shot sentiment analysis on low-resource languages without any fine-tuning?"
         </p>
       </div>
 

@@ -3,43 +3,46 @@ function Step4({ formData, updateFormData, onNext, onPrev }) {
     <div className="step-container">
       <div className="step-header">
         <div className="step-number">Section 4</div>
-        <h2 className="step-title">Is This a Publishable Question?</h2>
+        <h2 className="step-title">How Will You Share This Work?</h2>
       </div>
 
       <p className="step-description">
-        Assess whether your research question is novel enough to warrant publication. Consider if 
-        the findings can be shared externally and if they contribute significantly to the field. 
-        Publishability ensures your work has broader impact and advances the field. It also helps 
-        you secure funding, collaborations, and recognition.
+        Research has impact when it's shared effectively. Consider what artifacts you can release 
+        and who would benefit from them. This might include academic papers, blog posts, open-source 
+        code, datasets, models, or demos. Thinking about your audience and format early helps you 
+        plan what to build, what to measure, and how to communicate your findings. Not all research 
+        needs to be a conference paper—sometimes a well-documented GitHub repo or a detailed technical 
+        report has more impact.
       </p>
 
       <div className="step-tips">
         <div className="step-tips-title">Tips</div>
         <ul>
-          <li>Check recent conferences/journals: Ensure your question hasn't been addressed in recent publications.</li>
-          <li>Consider impact: Will your findings be of interest to the research community?</li>
+          <li>Consider multiple formats: Can you write a paper AND release code? A blog post AND a demo?</li>
+          <li>Know your audience: Academic researchers need different things than industry practitioners.</li>
+          <li>Think about access: If you can't share the data, can you share the model? If not the model, can you share insights via a paper?</li>
+          <li>Be realistic: What format actually matches your timeline and resources?</li>
         </ul>
       </div>
 
-     
       <div className="input-group">
-        <label className="input-label">Explain your answer</label>
+        <label className="input-label">How will you share this work and who is it for?</label>
         <textarea
-          value={formData.publishableExplanation}
-          onChange={(e) => updateFormData('publishableExplanation', e.target.value)}
-          placeholder="Explain why this is or isn't publishable..."
+          value={formData.sharingPlan}
+          onChange={(e) => updateFormData('sharingPlan', e.target.value)}
+          placeholder="Describe how you'll share this work and who your target audience is..."
         />
         <p className="example-text">
-          Example: "Yes. While multilingual models exist, this study focuses on zero-shot performance in low-resource languages, an underexplored area."
+          Example: "Primary: Conference paper at NeurIPS/EMNLP targeting the multilingual NLP community. Secondary: Open-source evaluation code on GitHub and a blog post for ML practitioners. If data permits, will also release fine-tuned models on HuggingFace."
         </p>
       </div>
 
       <div className="step-navigation">
         <button className="nav-btn" onClick={() => onPrev('step3')}>
-          ← back
+          â† back
         </button>
         <button className="nav-btn primary" onClick={() => onNext('step5')}>
-          next →
+          next â†’
         </button>
       </div>
     </div>

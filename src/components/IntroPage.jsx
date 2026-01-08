@@ -8,11 +8,19 @@ function IntroPage({ onNext }) {
         </p>
 
         <p className="step-description">
-          The following is the framework our team uses to focus our research questions and build a solid 
-          foundation for our projects. It helps us hone in our research questions, avoid common 
-          pitfalls, and align our work with proven best practices from the start. Whether you're 
-          a beginner tackling your first research project or an experienced researcher looking to 
-          streamline your process, this tool can help ground your research from the beginning.
+          This tool walks you through the framework our team at Cohere Labs uses to get our thoughts 
+          organized at the start of every project. But here's what's important to understand: this is 
+          just for getting started. Don't worry about making your answers perfect, polished, or even 
+          fully coherent. Be messy. Be informal. Brain dump. The goal is to get your ideas down and 
+          start thinking through the key questions.
+        </p>
+
+        <p className="step-description">
+          These questions are designed to help you identify what you know, what you don't know, and 
+          what you need to figure out. Once you've worked through them, you'll copy your scope document 
+          and continue refining it as you dig into the literature, run experiments, and talk with 
+          collaborators. Our team constantly revisits and revises our scope docs. Answers move between 
+          sections, priorities shift, questions get sharper. That's the process.
         </p>
 
         <h2 style={{ fontSize: '16px', fontWeight: 600, marginTop: '32px', marginBottom: '12px' }}>
@@ -20,8 +28,9 @@ function IntroPage({ onNext }) {
         </h2>
 
         <p className="step-description">
-          Because a well-scoped project saves time, reduces frustration, and increases your chances 
-          of success. Let's turn your ideas into a clear, actionable plan.
+          Because starting with a structured way to think through your project (even a messy first pass) 
+          will save you time, reduce frustration, and help you avoid common pitfalls. Let's get your 
+          ideas out of your head and into a form you can work with.
         </p>
 
         <div className="step-navigation" style={{ justifyContent: 'flex-end' }}>
