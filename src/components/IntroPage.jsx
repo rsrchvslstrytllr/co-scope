@@ -8,16 +8,15 @@ function IntroPage({ onNext }) {
         </p>
 
         <p className="step-description">
-          Co/scope walks you through the framework our team at Cohere Labs uses to get our thoughts 
+          Co/scope walks you through the framework Cohere Labs uses to get our thoughts 
           organized at the start of every project. But here's what's important to understand: this is 
           just for getting started. Don't worry about making your answers perfect. The goal is to get your ideas down and 
-          start thinking through the key questions.
+          start thinking through key questions.
         </p>
 
         <p className="step-description">
           These questions are designed to help you identify what you know, what you don't know, and 
-          what you need to figure out. Once you've worked through them, you'll copy your scope document 
-          and continue refining it as you dig into the literature, run experiments, and talk with 
+          what you need to figure out. Once you've worked through them, you'll continue refining as you dig into the literature, run experiments, and talk with 
           collaborators. Our team constantly revisits and revises our scope docs. Answers move between 
           sections, priorities shift, questions get sharper. That's the process.
         </p>
@@ -28,7 +27,7 @@ function IntroPage({ onNext }) {
 
         <p className="step-description">
           Because starting with a structured way to think through your project (even a messy first pass) 
-          will save you time, reduce frustration, and help you avoid common pitfalls. Let's get your 
+          saves you time, reduces frustration, and helps you avoid common pitfalls. Let's get your 
           ideas out of your head and into a form you can work with.
         </p>
 

@@ -84,11 +84,10 @@ function Conclusion({ formData, onRestart }) {
 
   return (
     <div className="conclusion-screen">
-      <h1 className="conclusion-title">You've done the first pass!</h1>
+      <h1 className="conclusion-title">You've worked through the core questions!</h1>
       
       <p className="conclusion-text">
-        You've worked through the core questions that ground every research project. Now comes the 
-        real work: take this scope document, share it with collaborators, start exploring the literature, 
+         Now comes the real work: take this scope document, share it with collaborators, start exploring the literature, 
         and let it evolve as you learn more.
       </p>
 
@@ -139,16 +138,6 @@ function Conclusion({ formData, onRestart }) {
             resize: 'vertical'
           }}
         />
-      </div>
-
-      <div className="next-steps">
-        <h3 className="next-steps-title">What's next?</h3>
-        <ul>
-          <li>Share your scope document with collaborators and advisors to get early feedback.</li>
-          <li>Use it as a guide while you explore the literature and refine your approach.</li>
-          <li>Revisit and revise as your project takes shape.</li>
-          <li>Let it be messy and evolving.</li>
-        </ul>
       </div>
 
       <div className="step-navigation" style={{ marginTop: '48px' }}>

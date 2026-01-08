@@ -11,7 +11,7 @@ function Step4({ formData, updateFormData, onNext, onPrev }) {
         and who would benefit from them. This might include academic papers, blog posts, open-source 
         code, datasets, models, or demos. Thinking about your audience and format early helps you 
         plan what to build, what to measure, and how to communicate your findings. Not all research 
-        needs to be a conference paper—sometimes a well-documented GitHub repo or a detailed technical 
+        needs to be a conference paper. Sometimes a well-documented GitHub repo or a detailed technical 
         report has more impact.
       </p>
 

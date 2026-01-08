@@ -1,7 +1,7 @@
 function Sidebar({ currentStep, setCurrentStep, completedSteps }) {
   const navItems = [
     { id: 'intro', label: 'Intro', className: 'intro' },
-    { id: 'step1', label: '1. Define the problem & why it matters', step: 1 },
+    { id: 'step1', label: '1. Define the problem', step: 1 },
     { id: 'step2', label: '2. Define your research question', step: 2 },
     { id: 'step3', label: '3. What work does this question build on?', step: 3 },
     { id: 'step4', label: '4. How will you share this work?', step: 4 },

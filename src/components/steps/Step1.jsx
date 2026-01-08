@@ -3,15 +3,14 @@ function Step1({ formData, updateFormData, onNext }) {
     <div className="step-container">
       <div className="step-header">
         <div className="step-number">Section 1</div>
-        <h2 className="step-title">Define the Problem & Why It Matters</h2>
+        <h2 className="step-title">Define the Problem</h2>
       </div>
 
       <p className="step-description">
         Strong research starts with a clear understanding of what problem you're tackling and why 
         it matters. Before jumping into specific research questions, take time to articulate what's 
         broken, missing, or could be improved. Think about who's affected by this problem and what 
-        impact solving it could have. This foundation will guide your research question, help you 
-        stay motivated, and make it easier to communicate your work's value to others.
+        impact solving it could have. This foundation will guide your research question and make it easier to communicate your work's value to others.
       </p>
 
       <div className="step-tips">
