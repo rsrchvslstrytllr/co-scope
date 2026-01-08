@@ -25,6 +25,7 @@ function Step3({ formData, updateFormData, onNext, onPrev }) {
       <div className="input-group">
         <label className="input-label">What prior work does this question build on?</label>
         <textarea
+        className="textarea-large"
           value={formData.priorWork}
           onChange={(e) => updateFormData('priorWork', e.target.value)}
           placeholder="Describe the prior work and literature..."

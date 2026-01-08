@@ -23,6 +23,7 @@ function Step5({ formData, updateFormData, onNext, onPrev }) {
       <div className="input-group">
         <label className="input-label">What is the simplest experimental setting?</label>
         <textarea
+        className="textarea-medium"
           value={formData.simplestExperiment}
           onChange={(e) => updateFormData('simplestExperiment', e.target.value)}
           placeholder="Describe the simplest experiment to test your hypothesis..."

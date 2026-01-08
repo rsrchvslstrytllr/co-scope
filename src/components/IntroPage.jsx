@@ -8,7 +8,7 @@ function IntroPage({ onNext }) {
         </p>
 
         <p className="step-description">
-          This tool walks you through the framework our team at Cohere Labs uses to get our thoughts 
+          Co/scope walks you through the framework our team at Cohere Labs uses to get our thoughts 
           organized at the start of every project. But here's what's important to understand: this is 
           just for getting started. Don't worry about making your answers perfect, polished, or even 
           fully coherent. Be messy. Be informal. Brain dump. The goal is to get your ideas down and 

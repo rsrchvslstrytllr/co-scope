@@ -27,7 +27,7 @@ function Step2({ formData, updateFormData, onNext, onPrev }) {
       <div className="input-group">
         <label className="input-label">What is the research question you want to answer?</label>
         <textarea
-          className="textarea-small"
+          className="textarea-large"
           value={formData.researchQuestion}
           onChange={(e) => updateFormData('researchQuestion', e.target.value)}
           placeholder="Enter your research question..."

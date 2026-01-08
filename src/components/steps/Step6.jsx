@@ -24,6 +24,7 @@ function Step6({ formData, updateFormData, onNext, onPrev }) {
       <div className="input-group">
         <label className="input-label">What are your key baselines and benchmarks?</label>
         <textarea
+        className="textarea-medium"
           value={formData.baselines}
           onChange={(e) => updateFormData('baselines', e.target.value)}
           placeholder="Describe the baselines and benchmarks you'll use..."

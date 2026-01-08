@@ -28,6 +28,7 @@ function Step4({ formData, updateFormData, onNext, onPrev }) {
       <div className="input-group">
         <label className="input-label">How will you share this work and who is it for?</label>
         <textarea
+        className="textarea-medium"
           value={formData.sharingPlan}
           onChange={(e) => updateFormData('sharingPlan', e.target.value)}
           placeholder="Describe how you'll share this work and who your target audience is..."
