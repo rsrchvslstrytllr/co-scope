@@ -1,3 +1,5 @@
+import CollapsibleTips from '../CollapsibleTips'
+
 function Step5({ formData, updateFormData, onNext, onPrev }) {
   return (
     <div className="step-container">
@@ -12,13 +14,10 @@ function Step5({ formData, updateFormData, onNext, onPrev }) {
         resources, and allows you to iterate faster. It's a critical step in derisking your project.
       </p>
 
-      <div className="step-tips">
-        <div className="step-tips-title">Tips</div>
-        <ul>
-          <li>Minimize variables: Focus on the core hypothesis.</li>
-          <li>Use existing tools: Leverage open-source models and datasets to speed up experimentation.</li>
-        </ul>
-      </div>
+      <CollapsibleTips>
+        <li>Minimize variables: Focus on the core hypothesis.</li>
+        <li>Use existing tools: Leverage open-source models and datasets to speed up experimentation.</li>
+      </CollapsibleTips>
 
       <div className="input-group">
         <label className="input-label">What is the simplest experimental setting?</label>
@@ -35,10 +34,10 @@ function Step5({ formData, updateFormData, onNext, onPrev }) {
 
       <div className="step-navigation">
         <button className="nav-btn" onClick={() => onPrev('step4')}>
-          ← back
+          &larr; back
         </button>
         <button className="nav-btn primary" onClick={() => onNext('step6')}>
-          next →
+          next &rarr;
         </button>
       </div>
     </div>

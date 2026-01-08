@@ -1,3 +1,5 @@
+import CollapsibleTips from '../CollapsibleTips'
+
 function Step6({ formData, updateFormData, onNext, onPrev }) {
   return (
     <div className="step-container">
@@ -13,13 +15,10 @@ function Step6({ formData, updateFormData, onNext, onPrev }) {
         are grounded in reality.
       </p>
 
-      <div className="step-tips">
-        <div className="step-tips-title">Tips</div>
-        <ul>
-          <li>Include diverse baselines: Cover different approaches (e.g., rule-based, deep learning).</li>
-          <li>Use established benchmarks: Ensure comparability with prior work.</li>
-        </ul>
-      </div>
+      <CollapsibleTips>
+        <li>Include diverse baselines: Cover different approaches (e.g., rule-based, deep learning).</li>
+        <li>Use established benchmarks: Ensure comparability with prior work.</li>
+      </CollapsibleTips>
 
       <div className="input-group">
         <label className="input-label">What are your key baselines and benchmarks?</label>
@@ -36,10 +35,10 @@ function Step6({ formData, updateFormData, onNext, onPrev }) {
 
       <div className="step-navigation">
         <button className="nav-btn" onClick={() => onPrev('step5')}>
-          ← back
+          &larr; back
         </button>
         <button className="nav-btn primary" onClick={() => onNext('step7')}>
-          next →
+          next &rarr;
         </button>
       </div>
     </div>

@@ -1,3 +1,5 @@
+import CollapsibleTips from '../CollapsibleTips'
+
 function Step4({ formData, updateFormData, onNext, onPrev }) {
   return (
     <div className="step-container">
@@ -15,15 +17,12 @@ function Step4({ formData, updateFormData, onNext, onPrev }) {
         report has more impact.
       </p>
 
-      <div className="step-tips">
-        <div className="step-tips-title">Tips</div>
-        <ul>
-          <li>Consider multiple formats: Can you write a paper AND release code? A blog post AND a demo?</li>
-          <li>Know your audience: Academic researchers need different things than industry practitioners.</li>
-          <li>Think about access: If you can't share the data, can you share the model? If not the model, can you share insights via a paper?</li>
-          <li>Be realistic: What format actually matches your timeline and resources?</li>
-        </ul>
-      </div>
+      <CollapsibleTips>
+        <li>Consider multiple formats: Can you write a paper AND release code? A blog post AND a demo?</li>
+        <li>Know your audience: Academic researchers need different things than industry practitioners.</li>
+        <li>Think about access: If you can't share the data, can you share the model? If not the model, can you share insights via a paper?</li>
+        <li>Be realistic: What format actually matches your timeline and resources?</li>
+      </CollapsibleTips>
 
       <div className="input-group">
         <label className="input-label">How will you share this work and who is it for?</label>
@@ -40,10 +39,10 @@ function Step4({ formData, updateFormData, onNext, onPrev }) {
 
       <div className="step-navigation">
         <button className="nav-btn" onClick={() => onPrev('step3')}>
-          â† back
+          &larr; back
         </button>
         <button className="nav-btn primary" onClick={() => onNext('step5')}>
-          next â†’
+          next &rarr;
         </button>
       </div>
     </div>

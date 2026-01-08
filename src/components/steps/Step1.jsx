@@ -1,3 +1,5 @@
+import CollapsibleTips from '../CollapsibleTips'
+
 function Step1({ formData, updateFormData, onNext }) {
   return (
     <div className="step-container">
@@ -13,16 +15,13 @@ function Step1({ formData, updateFormData, onNext }) {
         impact solving it could have. This foundation will guide your research question and make it easier to communicate your work's value to others.
       </p>
 
-      <div className="step-tips">
-        <div className="step-tips-title">Tips</div>
-        <ul>
-          <li>Describe the problem, not your solution: Focus on what's wrong or missing, not how you'll fix it (that comes later).</li>
-          <li>Be specific: Instead of "AI models have limitations," try "Sentiment analysis models misclassify informal text from social media."</li>
-          <li>Identify stakeholders: Who experiences this problem? Researchers? Practitioners? Specific communities? End users?</li>
-          <li>Connect to impact: What happens if this problem goes unsolved? What becomes possible if it's addressed?</li>
-          <li>Highlight gaps: What have others tried? Where do current approaches fall short?</li>
-        </ul>
-      </div>
+      <CollapsibleTips>
+        <li>Describe the problem, not your solution: Focus on what's wrong or missing, not how you'll fix it (that comes later).</li>
+        <li>Be specific: Instead of "AI models have limitations," try "Sentiment analysis models misclassify informal text from social media."</li>
+        <li>Identify stakeholders: Who experiences this problem? Researchers? Practitioners? Specific communities? End users?</li>
+        <li>Connect to impact: What happens if this problem goes unsolved? What becomes possible if it's addressed?</li>
+        <li>Highlight gaps: What have others tried? Where do current approaches fall short?</li>
+      </CollapsibleTips>
 
       <div className="input-group">
         <label className="input-label">What problem are you addressing and why does it matter?</label>
@@ -40,7 +39,7 @@ function Step1({ formData, updateFormData, onNext }) {
       <div className="step-navigation">
         <div></div>
         <button className="nav-btn primary" onClick={() => onNext('step2')}>
-          next →
+          next &rarr;
         </button>
       </div>
     </div>

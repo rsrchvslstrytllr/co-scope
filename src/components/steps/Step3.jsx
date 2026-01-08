@@ -1,3 +1,5 @@
+import CollapsibleTips from '../CollapsibleTips'
+
 function Step3({ formData, updateFormData, onNext, onPrev }) {
   return (
     <div className="step-container">
@@ -14,13 +16,10 @@ function Step3({ formData, updateFormData, onNext, onPrev }) {
         It's essential for justifying your approach and avoiding redundant efforts.
       </p>
 
-      <div className="step-tips">
-        <div className="step-tips-title">Tips</div>
-        <ul>
-          <li>Be specific: Mention authors, years, and key findings.</li>
-          <li>Highlight gaps: Explain how your work addresses limitations in existing studies.</li>
-        </ul>
-      </div>
+      <CollapsibleTips>
+        <li>Be specific: Mention authors, years, and key findings.</li>
+        <li>Highlight gaps: Explain how your work addresses limitations in existing studies.</li>
+      </CollapsibleTips>
 
       <div className="input-group">
         <label className="input-label">What prior work does this question build on?</label>
@@ -37,10 +36,10 @@ function Step3({ formData, updateFormData, onNext, onPrev }) {
 
       <div className="step-navigation">
         <button className="nav-btn" onClick={() => onPrev('step2')}>
-          ← back
+          &larr; back
         </button>
         <button className="nav-btn primary" onClick={() => onNext('step4')}>
-          next →
+          next &rarr;
         </button>
       </div>
     </div>

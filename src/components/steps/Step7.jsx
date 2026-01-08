@@ -1,3 +1,5 @@
+import CollapsibleTips from '../CollapsibleTips'
+
 function Step7({ formData, updateFormData, onNext, onPrev }) {
   const addResource = () => {
     updateFormData('resources', [...formData.resources, { type: '', name: '', source: '' }])
@@ -29,13 +31,10 @@ function Step7({ formData, updateFormData, onNext, onPrev }) {
         effectively, and replicate results. It's also crucial for writing papers and sharing code.
       </p>
 
-      <div className="step-tips">
-        <div className="step-tips-title">Tips</div>
-        <ul>
-          <li>Use open-source tools: Ensure accessibility for replication.</li>
-          <li>Document versions: Note specific model/dataset versions to avoid ambiguity.</li>
-        </ul>
-      </div>
+      <CollapsibleTips>
+        <li>Use open-source tools: Ensure accessibility for replication.</li>
+        <li>Document versions: Note specific model/dataset versions to avoid ambiguity.</li>
+      </CollapsibleTips>
 
       <div className="input-group">
         <label className="input-label">List your resources</label>
@@ -62,7 +61,7 @@ function Step7({ formData, updateFormData, onNext, onPrev }) {
               value={resource.source}
               onChange={(e) => updateResource(index, 'source', e.target.value)}
             />
-            <button onClick={() => removeResource(index)}>×</button>
+            <button onClick={() => removeResource(index)}>&times;</button>
           </div>
         ))}
         <button className="add-resource-btn" onClick={addResource}>
@@ -71,15 +70,15 @@ function Step7({ formData, updateFormData, onNext, onPrev }) {
       </div>
 
       <p className="example-text" style={{ marginTop: '16px' }}>
-        Examples: Dataset — XNLI (https://xnli.github.io), Model — mBERT (https://huggingface.co/bert-base-multilingual-cased), Evaluation Metric — Accuracy
+       Examples: Dataset &mdash; XNLI (https://xnli.github.io), Model &mdash; mBERT (https://huggingface.co/bert-base-multilingual-cased), Evaluation Metric &mdash; Accuracy
       </p>
 
       <div className="step-navigation">
         <button className="nav-btn" onClick={() => onPrev('step6')}>
-          ← back
+          &larr; back
         </button>
         <button className="nav-btn primary" onClick={() => onNext('step8')}>
-          next →
+          next &rarr;
         </button>
       </div>
     </div>

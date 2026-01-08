@@ -1,3 +1,5 @@
+import CollapsibleTips from '../CollapsibleTips'
+
 function Step8({ formData, updateFormData, onNext, onPrev }) {
   return (
     <div className="step-container">
@@ -12,15 +14,12 @@ function Step8({ formData, updateFormData, onNext, onPrev }) {
         manage expectations, and avoid scope creep.
       </p>
 
-      <div className="step-tips">
-        <div className="step-tips-title">Tips</div>
-        <ul>
-          <li>Be specific and realistic about what's achievable in your project.</li>
-          <li>Non-goals aren't failures—they're strategic decisions to maintain focus.</li>
-          <li>Prioritization helps you make trade-offs when resources are limited.</li>
-          <li>Acknowledging limitations upfront builds credibility.</li>
-        </ul>
-      </div>
+      <CollapsibleTips>
+        <li>Be specific and realistic about what's achievable in your project.</li>
+        <li>Non-goals aren't failures—they're strategic decisions to maintain focus.</li>
+        <li>Prioritization helps you make trade-offs when resources are limited.</li>
+        <li>Acknowledging limitations upfront builds credibility.</li>
+      </CollapsibleTips>
 
       <div className="input-group">
         <label className="input-label">Non-goals: What are you explicitly NOT trying to solve?</label>
@@ -76,10 +75,11 @@ function Step8({ formData, updateFormData, onNext, onPrev }) {
 
       <div className="step-navigation">
         <button className="nav-btn" onClick={() => onPrev('step7')}>
-          ← back
+         &larr; back
         </button>
         <button className="nav-btn primary" onClick={() => onNext('conclusion')}>
-          finish →
+          next &rarr;
+
         </button>
       </div>
     </div>
