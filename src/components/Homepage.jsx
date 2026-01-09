@@ -33,7 +33,9 @@ function SparkCanvas() {
             y: row * spacing,
             id: `${col}-${row}`,
             opacity: 0,
-            targetOpacity: 0
+            targetOpacity: 0,
+            scale: 1,
+            targetScale: 1
           })
         }
       }
@@ -63,26 +65,25 @@ function SparkCanvas() {
         // Check if within scope radius
         if (dist < scopeRadius) {
           revealedRef.current.add(spark.id)
-          spark.targetOpacity = 0.6
+          // Scale and opacity based on distance from center (closer = bigger/brighter)
+          const proximity = 1 - (dist / scopeRadius) // 1 at center, 0 at edge
+          spark.targetOpacity = 0.3 + proximity * 0.4 // 0.3 at edge, 0.7 at center
+          spark.targetScale = 1 + proximity * 1.2 // 1x at edge, 2.2x at center
+        } else {
+          spark.targetOpacity = 0
+          spark.targetScale = 1
         }
         
-        // If revealed, keep it visible (slowly fade to resting state)
-        if (revealedRef.current.has(spark.id)) {
-          if (dist < scopeRadius) {
-            spark.targetOpacity = 0.6 // Bright when in scope
-          } else {
-            spark.targetOpacity = 0 // Dimmer but still visible when revealed
-          }
-        }
-        
-        // Animate opacity toward target (snappy)
+        // Animate opacity and scale toward target (snappy)
         spark.opacity += (spark.targetOpacity - spark.opacity) * 0.2
+        spark.scale += (spark.targetScale - spark.scale) * 0.15
         
         // Draw spark
         if (spark.opacity > 0.01) {
           ctx.save()
           ctx.translate(spark.x, spark.y)
-          ctx.scale(sparkSize / 42, sparkSize / 46)
+          const s = sparkSize * spark.scale
+          ctx.scale(s / 42, s / 46)
           ctx.translate(-21, -23)
           ctx.fillStyle = `rgba(150, 150, 150, ${spark.opacity})`
           ctx.fill(sparkPath)
