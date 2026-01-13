@@ -1,4 +1,4 @@
-function Sidebar({ currentStep, setCurrentStep, completedSteps }) {
+function Sidebar({ currentStep, setCurrentStep, completedSteps, isOpen, onClose }) {
   const navItems = [
     { id: 'intro', label: 'Intro', className: 'intro' },
     { id: 'step1', label: '1. Define the problem', step: 1 },
@@ -13,7 +13,18 @@ function Sidebar({ currentStep, setCurrentStep, completedSteps }) {
   ]
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+      {/* Mobile close button */}
+      <div className="sidebar-close-area">
+        <button 
+          className="close-sidebar-btn"
+          onClick={onClose}
+          aria-label="Close menu"
+        >
+          ×
+        </button>
+      </div>
+
       <button 
         className="sidebar-logo" 
         onClick={() => setCurrentStep('home')}
@@ -29,30 +40,15 @@ function Sidebar({ currentStep, setCurrentStep, completedSteps }) {
         co/scope
       </button>
       <div className="sidebar-section">Steps</div>
-      <div style={{ marginBottom: '16px' }}>
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '8px',
-          fontSize: '12px',
-          color: '#666',
-          marginBottom: '6px'
-        }}>
-          <div style={{ 
-            flex: 1, 
-            height: '4px', 
-            background: '#e0e0e0',
-            borderRadius: '2px',
-            overflow: 'hidden'
-          }}>
-            <div style={{ 
-              width: `${(completedSteps.length / 8) * 100}%`, 
-              height: '100%', 
-              background: 'var(--black)',
-              transition: 'width 0.3s ease'
-            }} />
+      <div className="progress-container">
+        <div className="progress-bar-wrapper">
+          <div className="progress-bar">
+            <div 
+              className="progress-bar-fill"
+              style={{ width: `${(completedSteps.length / 8) * 100}%` }}
+            />
           </div>
-          <span>{completedSteps.length}/8</span>
+          <span className="progress-text">{completedSteps.length}/8</span>
         </div>
       </div>
       <nav className="sidebar-nav">
@@ -69,7 +65,7 @@ function Sidebar({ currentStep, setCurrentStep, completedSteps }) {
         ))}
       </nav>
       <div style={{ flex: 1 }}></div>
-      <div style={{ paddingTop: '32px' }}>
+      <div className="sidebar-footer">
         <svg viewBox="0 0 968.1 103.1" style={{ width: '100%', height: 'auto' }}>
           <g>
             <path fill="#000000" d="M134.3,51.5C134.3,19.2,150,.4,177.3.4s34.1,12.4,37.9,33.8h-13.2c-3.4-14.8-11.9-22.3-24.9-22.3-19.3,0-30,14.5-30,39.7s10.3,39.7,29.6,39.7,21.6-7.3,25.2-22.3h13.2c-3.9,21.6-17.8,33.8-38.4,33.8s-42.4-19-42.4-51.2h0Z"/>

@@ -69,6 +69,42 @@ html, body {
   color: var(--black);
 }
 
+/* Progress bar in sidebar */
+.progress-container {
+  margin-bottom: 16px;
+}
+
+.progress-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--black);
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 12px;
+  color: #666;
+}
+
+.sidebar-footer {
+  padding-top: 32px;
+}
+
 .nav-item {
   padding: 8px 12px;
   cursor: pointer;
@@ -109,6 +145,21 @@ html, body {
   content: '';
 }
 
+/* Mobile Header - hidden on desktop */
+.mobile-header {
+  display: none;
+}
+
+/* Sidebar overlay - hidden on desktop */
+.sidebar-overlay {
+  display: none;
+}
+
+/* Sidebar close area - hidden on desktop */
+.sidebar-close-area {
+  display: none;
+}
+
 /* Main Content */
 .main-content {
   flex: 1;
@@ -116,6 +167,27 @@ html, body {
   overflow-y: auto;
   min-height: 100vh;
   position: relative;
+}
+
+/* Saved indicator */
+.saved-indicator {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  padding: 8px 16px;
+  background: var(--white);
+  border: 1.5px solid var(--black);
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 1000;
+  animation: fadeInOut 2s ease;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* Intro Screen */
@@ -443,10 +515,55 @@ select:focus {
   border: 1.5px solid var(--black);
 }
 
+.download-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
 .download-title {
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin: 0;
+}
+
+.copy-btn {
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1.5px solid var(--black);
+  background: var(--black);
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  background: #333;
+}
+
+.download-description {
+  font-size: 13px;
+  margin-bottom: 12px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.document-output {
+  width: 100%;
+  min-height: 400px;
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  border: 1.5px solid var(--black);
+  border-top: 1.5px solid var(--black);
+  background: var(--white);
+  resize: vertical;
 }
 
 .download-btn {
@@ -489,7 +606,7 @@ select:focus {
 }
 
 .next-steps li::before {
-  content: 'â†’';
+  content: '→';
   position: absolute;
   left: 0;
 }
@@ -511,4 +628,405 @@ select:focus {
   line-height: 1.7;
   margin-bottom: 16px;
   color: #333;
+}
+
+
+/* ==========================================
+   MOBILE RESPONSIVE STYLES
+   ========================================== */
+
+@media (max-width: 768px) {
+  /* Layout */
+  .app-container {
+    flex-direction: column;
+  }
+
+  /* Mobile Header */
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-bottom: 1.5px solid var(--black);
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .mobile-logo {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    padding: 0;
+  }
+
+  .mobile-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .mobile-progress {
+    font-size: 12px;
+    color: #666;
+    font-family: var(--font-mono);
+  }
+
+  /* Hamburger Button */
+  .hamburger-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: 1.5px solid var(--black);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.15s ease;
+  }
+
+  .hamburger-btn:hover {
+    background: var(--gray-light);
+  }
+
+  .hamburger-btn span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--black);
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .hamburger-btn.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger-btn.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-btn.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Sidebar Overlay */
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .sidebar-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Sidebar - Mobile Drawer */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    border-right: 1.5px solid var(--black);
+    padding: 16px 20px 24px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Close button area in sidebar */
+  .sidebar-close-area {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+  }
+
+  .close-sidebar-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1.5px solid var(--black);
+    font-size: 28px;
+    font-weight: 300;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    line-height: 1;
+    padding-bottom: 2px;
+    transition: background 0.15s ease;
+  }
+
+  .close-sidebar-btn:hover {
+    background: var(--gray-light);
+  }
+
+  .sidebar-logo {
+    margin-bottom: 24px;
+  }
+
+  .sidebar-footer {
+    padding-top: 24px;
+  }
+
+  /* Navigation items - larger tap targets */
+  .nav-item {
+    padding: 14px 14px;
+    font-size: 14px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Main Content */
+  .main-content {
+    padding: 24px 20px 40px;
+    min-height: calc(100vh - 69px);
+  }
+
+  /* Saved indicator - adjust for mobile header */
+  .saved-indicator {
+    top: 80px;
+    right: 20px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  /* Intro Screen */
+  .intro-screen {
+    min-height: 50vh;
+    padding-top: 20px;
+  }
+
+  .intro-title {
+    font-size: 36px;
+    letter-spacing: -1.5px;
+  }
+
+  .intro-subtitle {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  /* Step Container */
+  .step-container {
+    max-width: 100%;
+  }
+
+  .step-title {
+    font-size: 20px;
+  }
+
+  .step-description {
+    font-size: 14px;
+  }
+
+  /* Tips section */
+  .step-tips {
+    margin-bottom: 24px;
+  }
+
+  .step-tips li {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* Form Elements */
+  .input-label {
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+
+  textarea {
+    padding: 14px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 100px;
+  }
+
+  textarea.textarea-small {
+    min-height: 80px;
+  }
+
+  textarea.textarea-medium {
+    min-height: 120px;
+  }
+
+  textarea.textarea-large {
+    min-height: 160px;
+  }
+
+  .example-text {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  /* Resource List - Stack on mobile */
+  .resource-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .resource-item input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .resource-item button {
+    align-self: flex-end;
+    padding: 10px 16px;
+    min-height: 44px;
+  }
+
+  .add-resource-btn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  /* Navigation Buttons */
+  .step-navigation {
+    margin-top: 32px;
+    padding-top: 20px;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    padding: 14px 20px;
+    font-size: 14px;
+    min-height: 48px;
+    flex: 1;
+    text-align: center;
+  }
+
+  /* Conclusion */
+  .conclusion-title {
+    font-size: 22px;
+  }
+
+  .conclusion-text {
+    font-size: 14px;
+  }
+
+  .download-section {
+    padding: 16px;
+    margin-top: 32px;
+  }
+
+  .download-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .download-title {
+    font-size: 14px;
+  }
+
+  .copy-btn {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 14px;
+    min-height: 48px;
+    text-align: center;
+  }
+
+  .download-description {
+    font-size: 12px;
+  }
+
+  .document-output {
+    min-height: 300px;
+    font-size: 11px;
+    padding: 14px;
+  }
+
+  /* Intro Content */
+  .intro-content h2 {
+    font-size: 18px;
+    margin-top: 24px;
+  }
+
+  .intro-content p {
+    font-size: 14px;
+  }
+
+  /* Select on mobile */
+  select {
+    width: 100%;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Small phones */
+@media (max-width: 375px) {
+  .mobile-header {
+    padding: 12px 16px;
+  }
+
+  .main-content {
+    padding: 20px 16px 32px;
+  }
+
+  .intro-title {
+    font-size: 32px;
+  }
+
+  .step-title {
+    font-size: 18px;
+  }
+
+  .nav-btn {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+
+  .sidebar {
+    width: 90%;
+    padding: 16px;
+  }
+
+  .conclusion-title {
+    font-size: 20px;
+  }
+
+  .download-section textarea {
+    font-size: 10px;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main-content {
+    padding: 40px 48px;
+  }
+
+  .sidebar {
+    width: 240px;
+    min-width: 240px;
+    padding: 20px;
+  }
 }

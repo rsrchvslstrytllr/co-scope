@@ -105,45 +105,35 @@ function Conclusion({ formData, onRestart }) {
       </p>
 
       <div className="download-section">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-          <h3 className="download-title" style={{ margin: 0 }}>Your Scope Document</h3>
+        <div className="download-header">
+          <h3 className="download-title">Your Scope Document</h3>
           <button 
-            className="nav-btn primary" 
+            className="copy-btn"
             onClick={() => {
               navigator.clipboard.writeText(generateDocumentText())
               setCopied(true)
               setTimeout(() => setCopied(false), 2000)
             }}
-            style={{ padding: '8px 16px', fontSize: '13px' }}
           >
             {copied ? 'Copied!' : 'Copy to Clipboard'}
           </button>
         </div>
-        <p style={{ fontSize: '13px', marginBottom: '12px', color: '#666' }}>
+        <p className="download-description">
           Copy the text below and paste it into whatever tool you use to organize your work 
           (Google Docs, Notion, etc.). Then revisit and revise as your project takes shape.
         </p>
         <textarea
+          className="document-output"
           value={generateDocumentText()}
           readOnly
-          style={{
-            width: '100%',
-            minHeight: '400px',
-            padding: '16px',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '13px',
-            lineHeight: '1.6',
-            border: '1.5px solid var(--black)',
-            background: 'var(--white)',
-            resize: 'vertical'
-          }}
         />
       </div>
 
-      <div className="step-navigation" style={{ marginTop: '48px' }}>
+      <div className="step-navigation">
         <button className="nav-btn" onClick={onRestart}>
           Start Over
         </button>
+        <div></div>
       </div>
     </div>
   )

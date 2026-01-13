@@ -29,6 +29,7 @@ const INITIAL_FORM_DATA = {
 function App() {
   const [currentStep, setCurrentStep] = useState('home')
   const [showSaved, setShowSaved] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [formData, setFormData] = useState(() => {
     const saved = localStorage.getItem('co-scope-data')
     if (saved) {
@@ -67,6 +68,35 @@ function App() {
     return () => clearTimeout(timer)
   }, [formData])
 
+  // Close sidebar when navigating on mobile
+  const handleStepChange = (step) => {
+    setCurrentStep(step)
+    setSidebarOpen(false)
+  }
+
+  // Close sidebar when clicking overlay
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setSidebarOpen(false)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // Prevent body scroll when sidebar is open
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [sidebarOpen])
+
   const updateFormData = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
@@ -83,6 +113,8 @@ function App() {
     if (formData.nonGoals.trim() || formData.scopeV1.trim() || formData.priorities.trim() || formData.knownLimitations.trim()) completed.push(8)
     return completed
   }
+
+  const completed = completedSteps()
 
   const renderStep = () => {
     const props = {
@@ -125,26 +157,44 @@ function App() {
 
   return (
     <div className="app-container">
+      {/* Mobile Header */}
+      <header className="mobile-header">
+        <button 
+          className="mobile-logo"
+          onClick={() => handleStepChange('home')}
+        >
+          co/scope
+        </button>
+        <div className="mobile-header-right">
+          <span className="mobile-progress">{completed.length}/8</span>
+          <button 
+            className={`hamburger-btn ${sidebarOpen ? 'open' : ''}`}
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </header>
+
+      {/* Overlay */}
+      <div 
+        className={`sidebar-overlay ${sidebarOpen ? 'open' : ''}`}
+        onClick={() => setSidebarOpen(false)}
+      />
+
       <Sidebar 
         currentStep={currentStep} 
-        setCurrentStep={setCurrentStep}
-        completedSteps={completedSteps()}
+        setCurrentStep={handleStepChange}
+        completedSteps={completed}
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
       />
       <main className="main-content">
         {showSaved && (
-          <div style={{
-            position: 'fixed',
-            top: '24px',
-            right: '24px',
-            padding: '8px 16px',
-            background: 'var(--white)',
-            border: '1.5px solid var(--black)',
-            fontSize: '13px',
-            fontWeight: '500',
-            opacity: showSaved ? 1 : 0,
-            transition: 'opacity 0.3s ease',
-            zIndex: 1000
-          }}>
+          <div className="saved-indicator">
             ✓ Saved
           </div>
         )}
