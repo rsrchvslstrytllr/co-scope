@@ -12,11 +12,10 @@ function Step7({ formData, updateFormData, onNext, onPrev }) {
       </div>
 
       <p className="step-description">
-        One of the most common reasons projects stall is a mismatch between ambition and infrastructure. 
-        Some researchers abandon ideas thinking they need 8xH100s when they don't. Others underestimate 
-        the complexity of distributed training or discover too late that a key dependency doesn't support 
-        their hardware. This section asks you to honestly assess what compute you have, how reliably you 
-        can access it, and whether your project's needs align with that reality.
+        You don't need a cluster of H100s to do meaningful research. Some of the most impactful work 
+        comes from clever experiment design, not brute-force compute. That said, projects often stall 
+        when there's a mismatch between ambition and available infrastructure. This section helps you 
+        take stock of what you have and shape your project to match.
       </p>
 
       <div className="step-tips">
@@ -29,12 +28,9 @@ function Step7({ formData, updateFormData, onNext, onPrev }) {
         </button>
         {tipsOpen && (
           <ul>
-            <li>Persistent free compute (even older GPUs) often enables more experimentation than expensive hourly H100 access.</li>
-            <li>Match your access pattern to your project phase: grants and burst compute are great for scaling validated ideas, not early exploration.</li>
-            <li>Different workloads need different hardware: L40S may be faster for inference while A100 is better for training.</li>
-            <li>Spot/serverless instances work well for benchmarking but poorly for long training runs.</li>
-            <li>Check that your key dependencies are actively maintained and support your target hardware/CUDA version.</li>
-            <li>Be honest: if your compute access doesn't match your project idea, consider adjusting the project direction.</li>
+            <li>Reliable access to modest hardware often beats sporadic access to powerful GPUs.</li>
+            <li>Many research questions can be answered with a single GPU and smart experiment design.</li>
+            <li>Check that your key dependencies are actively maintained before building on them.</li>
           </ul>
         )}
       </div>
