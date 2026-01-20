@@ -1,6 +1,9 @@
-import CollapsibleTips from '../CollapsibleTips'
+import { useState } from 'react'
 
 function Step5({ formData, updateFormData, onNext, onPrev }) {
+  const [tipsOpen, setTipsOpen] = useState(true)
+  const [exampleOpen, setExampleOpen] = useState(false)
+
   return (
     <div className="step-container">
       <div className="step-header">
@@ -14,30 +17,52 @@ function Step5({ formData, updateFormData, onNext, onPrev }) {
         resources, and allows you to iterate faster. It's a critical step in derisking your project.
       </p>
 
-      <CollapsibleTips>
-        <li>Minimize variables: Focus on the core hypothesis.</li>
-        <li>Use existing tools: Leverage open-source models and datasets to speed up experimentation.</li>
-      </CollapsibleTips>
+      <div className="step-tips">
+        <button 
+          className="step-tips-toggle"
+          onClick={() => setTipsOpen(!tipsOpen)}
+        >
+          <span className="step-tips-title">Tips</span>
+          <span className="step-tips-icon">{tipsOpen ? '−' : '+'}</span>
+        </button>
+        {tipsOpen && (
+          <ul>
+            <li>Minimize variables: Focus on the core hypothesis.</li>
+            <li>Use existing tools: Leverage open-source models and datasets to speed up experimentation.</li>
+          </ul>
+        )}
+      </div>
 
       <div className="input-group">
         <label className="input-label">What is the simplest experimental setting?</label>
         <textarea
-        className="textarea-medium"
+          className="textarea-medium"
           value={formData.simplestExperiment}
           onChange={(e) => updateFormData('simplestExperiment', e.target.value)}
           placeholder="Describe the simplest experiment to test your hypothesis..."
         />
-        <p className="example-text">
-          Example: "Test a pre-trained multilingual model (e.g., mBERT) on a small subset of low-resource languages using a standard NLP benchmark (e.g., XNLI)."
-        </p>
+        <div className="example-section">
+          <button 
+            className="example-toggle"
+            onClick={() => setExampleOpen(!exampleOpen)}
+          >
+            <span>Example</span>
+            <span className="example-toggle-icon">{exampleOpen ? '−' : '+'}</span>
+          </button>
+          {exampleOpen && (
+            <p className="example-text">
+              "Test a pre-trained multilingual model (e.g., mBERT) on a small subset of low-resource languages using a standard NLP benchmark (e.g., XNLI)."
+            </p>
+          )}
+        </div>
       </div>
 
       <div className="step-navigation">
         <button className="nav-btn" onClick={() => onPrev('step4')}>
-          &larr; back
+          ← back
         </button>
         <button className="nav-btn primary" onClick={() => onNext('step6')}>
-          next &rarr;
+          next →
         </button>
       </div>
     </div>

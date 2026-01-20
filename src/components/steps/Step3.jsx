@@ -1,6 +1,9 @@
-import CollapsibleTips from '../CollapsibleTips'
+import { useState } from 'react'
 
 function Step3({ formData, updateFormData, onNext, onPrev }) {
+  const [tipsOpen, setTipsOpen] = useState(true)
+  const [exampleOpen, setExampleOpen] = useState(false)
+
   return (
     <div className="step-container">
       <div className="step-header">
@@ -16,30 +19,52 @@ function Step3({ formData, updateFormData, onNext, onPrev }) {
         It's essential for justifying your approach and avoiding redundant efforts.
       </p>
 
-      <CollapsibleTips>
-        <li>Be specific: Mention authors, years, and key findings.</li>
-        <li>Highlight gaps: Explain how your work addresses limitations in existing studies.</li>
-      </CollapsibleTips>
+      <div className="step-tips">
+        <button 
+          className="step-tips-toggle"
+          onClick={() => setTipsOpen(!tipsOpen)}
+        >
+          <span className="step-tips-title">Tips</span>
+          <span className="step-tips-icon">{tipsOpen ? '−' : '+'}</span>
+        </button>
+        {tipsOpen && (
+          <ul>
+            <li>Be specific: Mention authors, years, and key findings.</li>
+            <li>Highlight gaps: Explain how your work addresses limitations in existing studies.</li>
+          </ul>
+        )}
+      </div>
 
       <div className="input-group">
         <label className="input-label">What prior work does this question build on?</label>
         <textarea
-        className="textarea-large"
+          className="textarea-large"
           value={formData.priorWork}
           onChange={(e) => updateFormData('priorWork', e.target.value)}
           placeholder="Describe the prior work and literature..."
         />
-        <p className="example-text">
-          Example: "This project builds on recent advances in transfer learning (Devlin et al., 2019) and multilingual model evaluation (Conneau et al., 2020). Key papers include [list citations]."
-        </p>
+        <div className="example-section">
+          <button 
+            className="example-toggle"
+            onClick={() => setExampleOpen(!exampleOpen)}
+          >
+            <span>Example</span>
+            <span className="example-toggle-icon">{exampleOpen ? '−' : '+'}</span>
+          </button>
+          {exampleOpen && (
+            <p className="example-text">
+              "This project builds on recent advances in transfer learning (Devlin et al., 2019) and multilingual model evaluation (Conneau et al., 2020). Key papers include [list citations]."
+            </p>
+          )}
+        </div>
       </div>
 
       <div className="step-navigation">
         <button className="nav-btn" onClick={() => onPrev('step2')}>
-          &larr; back
+          ← back
         </button>
         <button className="nav-btn primary" onClick={() => onNext('step4')}>
-          next &rarr;
+          next →
         </button>
       </div>
     </div>

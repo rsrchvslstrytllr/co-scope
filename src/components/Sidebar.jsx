@@ -7,8 +7,9 @@ function Sidebar({ currentStep, setCurrentStep, completedSteps, isOpen, onClose 
     { id: 'step4', label: '4. How will you share this work?', step: 4 },
     { id: 'step5', label: '5. Simplest experimental setting', step: 5 },
     { id: 'step6', label: '6. Key baselines and benchmarks', step: 6 },
-    { id: 'step7', label: '7. Datasets, models, and resources', step: 7 },
-    { id: 'step8', label: '8. Scope, non-goals & priorities', step: 8 },
+    { id: 'step7', label: '7. Compute & infrastructure', step: 7 },
+    { id: 'step8', label: '8. Datasets, models, and resources', step: 8 },
+    { id: 'step9', label: '9. Scope, non-goals & priorities', step: 9 },
     { id: 'conclusion', label: 'Conclusion', className: 'conclusion' }
   ]
 
@@ -45,10 +46,10 @@ function Sidebar({ currentStep, setCurrentStep, completedSteps, isOpen, onClose 
           <div className="progress-bar">
             <div 
               className="progress-bar-fill"
-              style={{ width: `${(completedSteps.length / 8) * 100}%` }}
+              style={{ width: `${(completedSteps.length / 9) * 100}%` }}
             />
           </div>
-          <span className="progress-text">{completedSteps.length}/8</span>
+          <span className="progress-text">{completedSteps.length}/9</span>
         </div>
       </div>
       <nav className="sidebar-nav">

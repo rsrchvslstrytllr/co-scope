@@ -38,10 +38,37 @@ function Conclusion({ formData, onRestart }) {
     text += '-'.repeat(50) + '\n'
     text += (formData.baselines || '(Not provided)') + '\n\n'
 
-    // Section 7
-    text += '7. DATASETS, MODELS, AND RESOURCES\n'
+    // Section 7 - NEW: Compute & Infrastructure
+    text += '7. COMPUTE & INFRASTRUCTURE\n'
     text += '-'.repeat(50) + '\n'
-    const validResources = formData.resources.filter(r => r.name.trim())
+    
+    const hasComputeContent = (formData.computeAccess && formData.computeAccess.trim()) || 
+                              (formData.workloadType && formData.workloadType.trim()) || 
+                              (formData.dependencies && formData.dependencies.trim())
+    
+    if (hasComputeContent) {
+      if (formData.computeAccess && formData.computeAccess.trim()) {
+        text += 'COMPUTE ACCESS:\n'
+        text += formData.computeAccess + '\n\n'
+      }
+      
+      if (formData.workloadType && formData.workloadType.trim()) {
+        text += 'WORKLOAD TYPE:\n'
+        text += formData.workloadType + '\n\n'
+      }
+      
+      if (formData.dependencies && formData.dependencies.trim()) {
+        text += 'KEY DEPENDENCIES:\n'
+        text += formData.dependencies + '\n\n'
+      }
+    } else {
+      text += '(Not provided)\n\n'
+    }
+
+    // Section 8
+    text += '8. DATASETS, MODELS, AND RESOURCES\n'
+    text += '-'.repeat(50) + '\n'
+    const validResources = formData.resources ? formData.resources.filter(r => r.name && r.name.trim()) : []
     if (validResources.length > 0) {
       validResources.forEach((resource) => {
         text += `• ${resource.type ? resource.type + ': ' : ''}${resource.name}${resource.source ? ' (' + resource.source + ')' : ''}\n`
@@ -51,31 +78,36 @@ function Conclusion({ formData, onRestart }) {
     }
     text += '\n\n'
 
-    // Section 8
-    text += '8. SCOPE, NON-GOALS & PRIORITIES\n'
+    // Section 9
+    text += '9. SCOPE, NON-GOALS & PRIORITIES\n'
     text += '-'.repeat(50) + '\n'
     
-    if (formData.nonGoals && formData.nonGoals.trim()) {
+    const hasNonGoals = formData.nonGoals && formData.nonGoals.trim()
+    const hasScopeV1 = formData.scopeV1 && formData.scopeV1.trim()
+    const hasPriorities = formData.priorities && formData.priorities.trim()
+    const hasLimitations = formData.knownLimitations && formData.knownLimitations.trim()
+    
+    if (hasNonGoals) {
       text += 'NON-GOALS:\n'
       text += formData.nonGoals + '\n\n'
     }
     
-    if (formData.scopeV1 && formData.scopeV1.trim()) {
+    if (hasScopeV1) {
       text += 'SCOPE FOR V1:\n'
       text += formData.scopeV1 + '\n\n'
     }
     
-    if (formData.priorities && formData.priorities.trim()) {
+    if (hasPriorities) {
       text += 'PRIORITIES:\n'
       text += formData.priorities + '\n\n'
     }
     
-    if (formData.knownLimitations && formData.knownLimitations.trim()) {
+    if (hasLimitations) {
       text += 'KNOWN LIMITATIONS:\n'
       text += formData.knownLimitations + '\n\n'
     }
     
-    if (!formData.nonGoals.trim() && !formData.scopeV1.trim() && !formData.priorities.trim() && !formData.knownLimitations.trim()) {
+    if (!hasNonGoals && !hasScopeV1 && !hasPriorities && !hasLimitations) {
       text += '(Not provided)\n\n'
     }
 

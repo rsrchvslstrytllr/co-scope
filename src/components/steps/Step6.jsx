@@ -1,6 +1,9 @@
-import CollapsibleTips from '../CollapsibleTips'
+import { useState } from 'react'
 
 function Step6({ formData, updateFormData, onNext, onPrev }) {
+  const [tipsOpen, setTipsOpen] = useState(true)
+  const [exampleOpen, setExampleOpen] = useState(false)
+
   return (
     <div className="step-container">
       <div className="step-header">
@@ -15,30 +18,52 @@ function Step6({ formData, updateFormData, onNext, onPrev }) {
         are grounded in reality.
       </p>
 
-      <CollapsibleTips>
-        <li>Include diverse baselines: Cover different approaches (e.g., rule-based, deep learning).</li>
-        <li>Use established benchmarks: Ensure comparability with prior work.</li>
-      </CollapsibleTips>
+      <div className="step-tips">
+        <button 
+          className="step-tips-toggle"
+          onClick={() => setTipsOpen(!tipsOpen)}
+        >
+          <span className="step-tips-title">Tips</span>
+          <span className="step-tips-icon">{tipsOpen ? '−' : '+'}</span>
+        </button>
+        {tipsOpen && (
+          <ul>
+            <li>Include diverse baselines: Cover different approaches (e.g., rule-based, deep learning).</li>
+            <li>Use established benchmarks: Ensure comparability with prior work.</li>
+          </ul>
+        )}
+      </div>
 
       <div className="input-group">
         <label className="input-label">What are your key baselines and benchmarks?</label>
         <textarea
-        className="textarea-medium"
+          className="textarea-medium"
           value={formData.baselines}
           onChange={(e) => updateFormData('baselines', e.target.value)}
           placeholder="Describe the baselines and benchmarks you'll use..."
         />
-        <p className="example-text">
-          Example: "Baselines include mBERT (Devlin et al., 2019) and XLM-R (Conneau et al., 2020). Benchmarks: XNLI, MLQA."
-        </p>
+        <div className="example-section">
+          <button 
+            className="example-toggle"
+            onClick={() => setExampleOpen(!exampleOpen)}
+          >
+            <span>Example</span>
+            <span className="example-toggle-icon">{exampleOpen ? '−' : '+'}</span>
+          </button>
+          {exampleOpen && (
+            <p className="example-text">
+              "Baselines include mBERT (Devlin et al., 2019) and XLM-R (Conneau et al., 2020). Benchmarks: XNLI, MLQA."
+            </p>
+          )}
+        </div>
       </div>
 
       <div className="step-navigation">
         <button className="nav-btn" onClick={() => onPrev('step5')}>
-          &larr; back
+          ← back
         </button>
         <button className="nav-btn primary" onClick={() => onNext('step7')}>
-          next &rarr;
+          next →
         </button>
       </div>
     </div>

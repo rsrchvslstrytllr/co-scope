@@ -10,6 +10,7 @@ import Step5 from './components/steps/Step5'
 import Step6 from './components/steps/Step6'
 import Step7 from './components/steps/Step7'
 import Step8 from './components/steps/Step8'
+import Step9 from './components/steps/Step9'
 import Conclusion from './components/Conclusion'
 
 const INITIAL_FORM_DATA = {
@@ -19,6 +20,9 @@ const INITIAL_FORM_DATA = {
   sharingPlan: '',
   simplestExperiment: '',
   baselines: '',
+  computeAccess: '',
+  workloadType: '',
+  dependencies: '',
   resources: [{ type: '', name: '', source: '' }],
   nonGoals: '',
   scopeV1: '',
@@ -109,8 +113,9 @@ function App() {
     if (formData.sharingPlan.trim()) completed.push(4)
     if (formData.simplestExperiment.trim()) completed.push(5)
     if (formData.baselines.trim()) completed.push(6)
-    if (formData.resources.some(r => r.name.trim())) completed.push(7)
-    if (formData.nonGoals.trim() || formData.scopeV1.trim() || formData.priorities.trim() || formData.knownLimitations.trim()) completed.push(8)
+    if (formData.computeAccess.trim() || formData.workloadType.trim() || formData.dependencies.trim()) completed.push(7)
+    if (formData.resources.some(r => r.name.trim())) completed.push(8)
+    if (formData.nonGoals.trim() || formData.scopeV1.trim() || formData.priorities.trim() || formData.knownLimitations.trim()) completed.push(9)
     return completed
   }
 
@@ -145,6 +150,8 @@ function App() {
         return <Step7 {...props} />
       case 'step8':
         return <Step8 {...props} />
+      case 'step9':
+        return <Step9 {...props} />
       case 'conclusion':
         return <Conclusion formData={formData} onRestart={() => {
           setFormData(INITIAL_FORM_DATA)
@@ -166,7 +173,7 @@ function App() {
           co/scope
         </button>
         <div className="mobile-header-right">
-          <span className="mobile-progress">{completed.length}/8</span>
+          <span className="mobile-progress">{completed.length}/9</span>
           <button 
             className={`hamburger-btn ${sidebarOpen ? 'open' : ''}`}
             onClick={() => setSidebarOpen(!sidebarOpen)}
