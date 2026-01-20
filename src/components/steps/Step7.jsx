@@ -2,7 +2,9 @@ import { useState } from 'react'
 
 function Step7({ formData, updateFormData, onNext, onPrev }) {
   const [tipsOpen, setTipsOpen] = useState(true)
-  const [examplesOpen, setExamplesOpen] = useState(false)
+  const [example1Open, setExample1Open] = useState(false)
+  const [example2Open, setExample2Open] = useState(false)
+  const [example3Open, setExample3Open] = useState(false)
 
   return (
     <div className="step-container">
@@ -46,12 +48,12 @@ function Step7({ formData, updateFormData, onNext, onPrev }) {
         <div className="example-section">
           <button 
             className="example-toggle"
-            onClick={() => setExamplesOpen(!examplesOpen)}
+            onClick={() => setExample1Open(!example1Open)}
           >
             <span>Example</span>
-            <span className="example-toggle-icon">{examplesOpen ? '−' : '+'}</span>
+            <span className="example-toggle-icon">{example1Open ? '−' : '+'}</span>
           </button>
-          {examplesOpen && (
+          {example1Open && (
             <p className="example-text">
               "I have persistent access to a university cluster with 4x A100 (40GB) nodes, typically 2-3 day queue times. 
               I also have $500 in cloud credits on Lambda Labs that I'm saving for final training runs. 
@@ -69,6 +71,21 @@ function Step7({ formData, updateFormData, onNext, onPrev }) {
           onChange={(e) => updateFormData('workloadType', e.target.value)}
           placeholder="Describe your expected workload: many small experiments, large training runs, inference/benchmarking, or a mix..."
         />
+        <div className="example-section">
+          <button 
+            className="example-toggle"
+            onClick={() => setExample2Open(!example2Open)}
+          >
+            <span>Example</span>
+            <span className="example-toggle-icon">{example2Open ? '−' : '+'}</span>
+          </button>
+          {example2Open && (
+            <p className="example-text">
+              "Mostly small experiments—I'll be running ~50 ablations on 1B parameter models, each taking 2-4 hours on a single GPU. 
+              One final training run at 7B scale for the paper, which will need multi-GPU."
+            </p>
+          )}
+        </div>
       </div>
 
       <div className="input-group">
@@ -79,6 +96,21 @@ function Step7({ formData, updateFormData, onNext, onPrev }) {
           onChange={(e) => updateFormData('dependencies', e.target.value)}
           placeholder="List critical packages/frameworks, their maintenance status, and any version constraints (PyTorch, CUDA, etc.)..."
         />
+        <div className="example-section">
+          <button 
+            className="example-toggle"
+            onClick={() => setExample3Open(!example3Open)}
+          >
+            <span>Example</span>
+            <span className="example-toggle-icon">{example3Open ? '−' : '+'}</span>
+          </button>
+          {example3Open && (
+            <p className="example-text">
+              "PyTorch 2.1+ (actively maintained), HuggingFace Transformers (active, large community), 
+              and a custom fork of an evaluation library (last updated 6 months ago—may need to maintain ourselves)."
+            </p>
+          )}
+        </div>
       </div>
 
       <div className="step-navigation">
